@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
                 // 恢复指定列的默认值
 //                book.setToDefault("press");
 //                book.updateAll();
+            }
+        });
+
+        Button deleteButton = (Button) findViewById(R.id.delete_data);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DataSupport.deleteAll(Book.class, "price < ?", "15");
+//                DataSupport.deleteAll(Book.class); // 删除book中所有数据
             }
         });
     }
