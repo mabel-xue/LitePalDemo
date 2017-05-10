@@ -1,10 +1,12 @@
 package com.mabel.litepaltest;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by mabelxue on 2017/5/10.
  */
 
-public class Book {
+public class Book extends DataSupport {
     private int id;
     private String author;
     private double price;
