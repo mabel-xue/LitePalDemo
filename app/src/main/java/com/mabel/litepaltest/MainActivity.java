@@ -1,12 +1,16 @@
 package com.mabel.litepaltest;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,5 +73,31 @@ public class MainActivity extends AppCompatActivity {
 //                DataSupport.deleteAll(Book.class); // 删除book中所有数据
             }
         });
+
+        Button queryButton = (Button) findViewById(R.id.query_data);
+        queryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Book> books = DataSupport.findAll(Book.class); // 查询所有数据
+//                Book firstBook = DataSupport.findFirst(Book.class); // 查询表中第一条数据
+//                Book lastBook = DataSupport.findLast(Book.class); // 查询表中最后一条数据
+//                List<Book> books1 = DataSupport.select("name", "author").find(Book.class);  // 查询指定列数据
+//                List<Book> books2 = DataSupport.where("pages > ?", "400").find(Book.class); // 按指定条件查询
+//                List<Book> books3 = DataSupport.order("price asc").find(Book.class);    // 按指定结果升序排列
+//                List<Book> books4 = DataSupport.order("price desc").find(Book.class);   // 按指定结果降序排列
+//                List<Book> books5 = DataSupport.limit(3).find(Book.class);  // 指定查询结果的数量
+//                List<Book> books6 = DataSupport.limit(3).offset(1).find(Book.class);    // 指定查询结果的偏移量
+//                Cursor cursor = DataSupport.findBySQL("select * from Book where pages > ? and price < ?",
+//                        "400", "20");   // 使用原生SQL语句进行查询
+                for (Book book: books) {
+                    Log.d("MainActivity", "book name is " + book.getName());
+                    Log.d("MainActivity", "book author is " + book.getAuthor());
+                    Log.d("MainActivity", "book pages is " + book.getPages());
+                    Log.d("MainActivity", "book price is " + book.getPrice());
+                    Log.d("MainActivity", "book press is " + book.getPress());
+                }
+            }
+        });
+
     }
 }
